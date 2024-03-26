@@ -1,0 +1,25 @@
+*{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+/*
+.btnResp{
+    display: none;
+}
+@media only screen and (max-width: 991px) {
+    
+    aside {
+      display: none;  Make images responsive on small screens 
+    }
+    .btnResp{
+        display: block;
+    }
+  }
+*/
+.parent{
+    height: 100vh;
+    position: sticky;
+    top: 0vh;
+}

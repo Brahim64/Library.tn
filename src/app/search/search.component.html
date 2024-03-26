@@ -1,0 +1,18 @@
+<form class="form-inline my-2 my-lg-0 ">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="searchTerm" name="searchTerm"  [ngModelOptions]="{standalone: true}" >
+    
+    <button class="btn btn-outline-dark my-sm-0" (click)="onSearch()">
+        Search
+    </button>
+</form>
+<style>
+    .material-symbols-outlined {
+        
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 600,
+      'GRAD' 0,
+      'opsz' 24
+    }
+    
+    </style>

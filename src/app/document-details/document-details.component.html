@@ -1,0 +1,21 @@
+<div class="row mt-5 row-xs-cols-2">
+    
+        <div class="image col-md-5 col-xs-1 mb-2 bg-white text-center">
+            <img class="img-thumbnail mt-3 img-responsive" src="{{doc.photo}}" width="400" style="max-height:90% ;max-width: 90%;min-height:90%;min-width: 90%;"  alt="book image">
+        </div>
+        <div class="col-1"></div>
+        <div class="col-md-6 col-xs-1 mb-2 bg-white">
+            <div class="card-body">
+                <h3 class="card-title">{{doc.title}}</h3>
+                <br>
+                <h5 class="card-subtitle">{{doc.author}}</h5>
+                <br>
+                <p class="text-muted"><small>{{doc.dateOfPub | date:'y MMM EEEE d ' |uppercase}}</small></p>
+                <p>{{doc.resume}}</p>
+                <div class="bouton text-right">
+                    <a href="#" class="btn btn-primary">download</a>
+                </div>
+            </div>
+        </div>
+    
+</div>

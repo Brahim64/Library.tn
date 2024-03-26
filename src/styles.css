@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.main-body{
+    background-color: rgb(241,241,242);
+}
+*{
+    box-sizing: border-box;
+
+}
+html{
+    scroll-behavior: smooth;
+}
