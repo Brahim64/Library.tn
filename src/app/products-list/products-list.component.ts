@@ -19,12 +19,9 @@ export class ProductsListComponent implements OnInit{
     
     this.route.paramMap.subscribe(res=>{
       if (res.get('param1')) {
-        console.log(res.get('param1'))
-        this.messengerService.sendMessage(res.get('param1'));
-        this.documents=this.documentService.getAllDocuments().filter(doc=>doc.title.toLowerCase().includes(res.get('param1').toLowerCase()))
+        this.documents=this.documentService.getAllDocumentsByTitle(res.get('param1'));
       }
       else{
-        console.log(res.get('param1'))
         this.documents=this.documentService.getAllDocuments();
       }
     })
