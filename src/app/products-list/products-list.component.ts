@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { document } from '../shared/model/document';
 import { DocumentService } from '../service/document.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessengerService } from '../service/messenger.service';
+import { Observable, timer } from 'rxjs';
 
 @Component({
   selector: 'app-products-list',
@@ -10,22 +11,31 @@ import { MessengerService } from '../service/messenger.service';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit{
+  constructor(private documentService :DocumentService,private route:ActivatedRoute,private router :Router,@Inject('baseURL') private baseUrl){}
   documents:document[];
+  BaseUrl=this.baseUrl;
   
-  constructor(private documentService :DocumentService,private route:ActivatedRoute,
-                private messengerService:MessengerService){}
+  
   
   ngOnInit():void {
-    
+    this.documentService.getAllDocuments().subscribe(res=>{this.documents=res})
     this.route.paramMap.subscribe(res=>{
-      if (res.get('param1')) {
+      /* if (res.get('param1')) {
         this.documents=this.documentService.getAllDocumentsByTitle(res.get('param1'));
-      }
-      else{
-        this.documents=this.documentService.getAllDocuments();
+      } 
+      else*/{
+        
+        /* this.documents=this.documentService.getAllDocuments(); */
       }
     })
+    console.log(this.documents)
     
+    
+  }
+  onDocument(id:number){
+    timer(100).subscribe(()=>{
+      this.router.navigateByUrl("documents/"+id);
+    })
     
   }
   

@@ -10,16 +10,16 @@
         <div class="modal-body">
           <form [formGroup]="loginForm">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid':loginForm.get('email').dirty && loginForm.get('email').invalid}" placeholder="Enter email" required>
+              <label for="email">Email address</label>
+              <input type="email" [readOnly]="true"  class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid':loginForm.get('email').dirty && loginForm.get('email').invalid}" placeholder="Enter email" required>
               <!-- <small id="emailHelp" class="form-text text-muted"></small> -->
               <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').invalid" class="invalid-feedback">
                 <div *ngIf="loginForm.get('email').hasError('required')">please provide a valid mail</div>
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
             </div>
             <!-- <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">

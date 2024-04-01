@@ -5,7 +5,7 @@ export class document{
     theme?:string;
     keywords?:string[];
     resume?:string;
-    dateOfPub!:Date;
+    dateOfPub?:Date;
     fileType?:string; //rapport , memoire ....
     file?:string;
     photo!:string;

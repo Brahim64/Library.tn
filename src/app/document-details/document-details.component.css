@@ -5,3 +5,11 @@
     
     height: 50vh;
 }
+input{
+    outline: none;
+    border-width: 1px;
+    border-color: black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}

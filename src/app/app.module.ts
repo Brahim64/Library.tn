@@ -10,7 +10,9 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { DocumentDetailsComponent } from './document-details/document-details.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './auth/login/login.component';
-
+import { DocumentService } from './service/document.service';
+import { baseURL } from './shared/baseUrl';
+import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,9 +27,13 @@ import { LoginComponent } from './auth/login/login.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    DocumentService,
+    {provide:'baseURL',useValue:baseURL}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

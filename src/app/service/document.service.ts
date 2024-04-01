@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { document } from '../shared/model/document';
 import { Categeory } from '../shared/model/Category';
 import { Type } from '../shared/model/Type';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class DocumentService {
   
   documents:document[]=[
       
-    { id:1,
+    /* { id:1,
       title:"Algorthmique",
       dateOfPub:new Date(),
       author:'Rick and Morty',
@@ -87,26 +89,50 @@ export class DocumentService {
       resume:"learn algebra now ...",
       file:"",
       photo:"./assets/images/default.jpg"
-    }
+    } */
   ]
-  constructor() { }
-  getAllDocumentsByTitle(title: string): document[] {
+  constructor(private httpClient:HttpClient,@Inject('baseURL') private baseUrl) { }
+  /* getAllDocumentsByTitle(title: string): document[] {
     return this.getAllDocuments().filter(doc=>doc.title.toLowerCase().includes(title.toLowerCase()))
+  } */
+  getAllDocuments():Observable<document[]>{
+    return this.httpClient.get<document[]>(this.baseUrl+'documents');
   }
-  getAllDocuments():document[]{
-    return this.documents;
+  getDocumentById(id:number):Observable<document>{
+    /* return this.documents.find(doc=>doc.id==id); */
+    return this.httpClient.get<document>(this.baseUrl+"documents/"+id);
+    
   }
-  getDocumentById(id:number):document{
-    return this.documents.find(doc=>doc.id==id);
+  getDocumentsCategories():Categeory[]{
+    let docs:document[]=[]
+    let themes:string[]=[];
+    let new_themes:Set<string>;
+    let categ:Categeory[]=[];
+    this.httpClient.get<document[]>(this.baseUrl+'documents').subscribe(res => {
+      docs=res
+      console.log(docs)
+    });
+    
+    docs.forEach(doc=>{
+      themes.push(doc.theme);
+    })
+    new_themes=new Set(themes)
+    new_themes.forEach(elt => {
+      categ.push({name:elt,count:themes.filter(theme=>theme==elt).length})
+    });
+    return categ;
   }
-  getDocumentsThemes():Categeory[]{
-    let names= new Set(this.documents.map(doc=>doc.theme));
+ /* getDocumentsByThemes(theme:string):Observable<document[]>{
+
+    return this.httpClient.get<document[]>(this.baseUrl+"documents/"+theme);
+
+     let names= new Set(this.documents.map(doc=>doc.theme));
     let categories:Categeory[]=[];
     names.forEach(categ=>{
       categories.push({name:categ,count:this.documents.filter(doc=>doc.theme==categ).length})
     })
-    return categories;
-  }
+    return categories; 
+  }*/
   getDocumentsTypes(): Type[] {
     let names= new Set(this.documents.map(doc=>doc.fileType));
     let types:Type[]=[];

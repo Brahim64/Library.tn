@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   {path:'',component:ProductsListComponent,pathMatch:"full"},
   {path:'search/:param1',component:ProductsListComponent},
-  
-  {path:'document/:id',component:DocumentDetailsComponent}
+  {path:'documents',component:ProductsListComponent},
+  {path:'documents/:id',component:DocumentDetailsComponent}
   
 ];
 
