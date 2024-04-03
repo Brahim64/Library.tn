@@ -1,0 +1,58 @@
+<div class="modal fade" id="docEditer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Document edit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form >
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text"  class="form-control" id="title" name="title" placeholder="title" [(ngModel)]="document.title" >
+              <!-- <small id="emailHelp" class="form-text text-muted"></small> -->
+              
+            </div>
+            <div class="form-group">
+              <label for="Author">Author</label>
+              <input type="text" class="form-control" id="author" name="author" placeholder="Author" [(ngModel)]="document.author" value="{{document.author}}">
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <input class="form-control" list="types" name="type" placeholder="Type" [(ngModel)]="document.fileType" id="type">
+                <datalist id="types">
+                  <option value="Memoire">
+                  <option value="These">
+                  <option value="Rapport">
+                  <option value="Book">
+                  <option value="Article">
+                </datalist> 
+            </div>
+            <div class="form-group">
+                <label for="Author">Theme</label>
+                <input type="text" class="form-control" id="theme" name="theme" placeholder="category" [(ngModel)]="document.theme" value="{{document.theme}}">
+            </div>
+            <div class="mb-3">
+                <label for="resume" class="form-label">Resume</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="resume" [(ngModel)]="document.resume" >{{document.resume}}</textarea>
+            </div>
+            <!-- <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+            
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
+            </div>
+            
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  

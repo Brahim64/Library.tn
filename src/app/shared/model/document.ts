@@ -1,5 +1,5 @@
 export class document{
-    id!:number;
+    id?:number;
     title!:string;
     author?:string;
     theme?:string;
@@ -9,4 +9,5 @@ export class document{
     fileType?:string; //rapport , memoire ....
     file?:string;
     photo!:string;
+    modified?:boolean=false;
 }

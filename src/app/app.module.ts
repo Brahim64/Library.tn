@@ -13,6 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { DocumentService } from './service/document.service';
 import { baseURL } from './shared/baseUrl';
 import { HttpClientModule } from "@angular/common/http";
+import { DocumentEditerComponent } from './document-editer/document-editer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { HttpClientModule } from "@angular/common/http";
     ProductsListComponent,
     DocumentDetailsComponent,
     SearchComponent,
-    LoginComponent
+    LoginComponent,
+    DocumentEditerComponent
   ],
   imports: [
     BrowserModule,

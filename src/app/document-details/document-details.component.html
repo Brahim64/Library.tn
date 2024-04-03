@@ -12,21 +12,24 @@
         <div class="col-md-6 col-xs-1 mb-2 bg-white">
             <div class="card-body">
                 <h3 class="card-title">{{doc.title}}</h3>
-                <!-- <input type="text"  class="form-control-plaintext" value={{doc.title}}> -->
                 <br>
                 <h5 class="card-subtitle">{{doc.author}}</h5>
-                <!-- <input type="text"  class="form-control-plaintext" value={{doc.author}}> -->
                 <br>
                 <h5 class="card-subtitle">{{doc.theme}}</h5>
-                <!-- <input type="text"  class="form-control-plaintext" value={{doc.theme}}> -->
                 <br>
-                <!-- <p class="text-muted"><small>{{doc.dateOfPub | date:'y MMM EEEE d ' |uppercase}}</small></p> -->
-                <!-- <p>{{doc.resume}}</p> -->
-                <!-- <textarea name="" id="" cols="30" rows="2">{{doc.resume}}</textarea> -->
-                <div class="bouton text-right">
+                <p class="text-muted"><small>{{doc.dateOfPub | date:'y MMM EEEE d ' |uppercase}}</small></p>
+                <p>{{doc.resume}}</p>
+                <div [hidden]="true" class="bouton text-right">
                     <a href="#" class="btn btn-primary">download</a>
+                </div>
+                <div class="bouton text-right mt-5">
+                    <button type="button"  class="btn btn-dark" data-toggle="modal" data-target="#docEditer">Edit</button>
+                </div>
+                <div class="bouton text-right mt-5">
+                    <button type="button"  class="btn btn-danger" (click)="onDelete()">Delete</button>
                 </div>
             </div>
         </div>
     
 </div>
+<app-document-editer [docu]="doc"></app-document-editer>

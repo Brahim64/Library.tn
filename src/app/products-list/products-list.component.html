@@ -1,13 +1,26 @@
 <!-- <div class=" d-flex justify-content-around">
     
 </div> -->
-
+<div class="row mt-4">
+    <div class="col-9"></div>
+    <div class="col-3">
+        <div class="">
+            <button class="btn btn-dark align-items-center" data-toggle="modal" data-target="#docEditer">
+                New document
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
 <div class="container">
     <!-- <div class="container bg-white mt-2">
         <app-search></app-search>
     </div> -->
             
-                <div *ngFor="let doc of documents"  class="card mt-3 mr-2" routerLink="/documents/{{doc.id}}" style="width: 15rem;height: 22rem;">
+                <div *ngFor="let doc of documents;let i =index"  class="card mt-2 mr-2" routerLink="/documents/{{doc.id}}" style="width: 15rem;height: 22rem;">
                     <div class="image text-center">
                         <img src="{{BaseUrl+doc.photo}}"  alt="book image" style="min-width: 55%;">
                     </div>
@@ -15,9 +28,9 @@
                         <span class="card-title bg-dark bg-opacity-10 text-white rounded-pill px-2 py-1">{{doc.theme}}</span>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{doc.title}}</h5>
-                        <h6 class="card-subtitle">{{doc.author}}</h6>
-                        <p class="text-muted"><small>{{doc.dateOfPub | date:'y MMM EEEE d ' |uppercase}}</small></p>
+                        <h5 class="card-title text-truncate">{{doc.title}}</h5>
+                        <h6 class="card-subtitle text-truncate">{{doc.author}}</h6>
+                        <p class="text-muted text-truncate"><small>{{doc.dateOfPub | date:'y MMM EEEE d ' |uppercase}}</small></p>
                         <div class="text-right">
                             <a href="#"  class="btn btn-primary">download</a>
                         </div>
@@ -26,4 +39,4 @@
             
 </div>
 
-       
+<app-document-editer [add]="true"></app-document-editer>

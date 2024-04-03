@@ -19,7 +19,18 @@ export class SideBarComponent implements OnInit{
   ngOnInit(): void {
     this.documentService.getAllDocuments().subscribe(res=>{
       this.documents=res;
-      this.categories=this.getCategories();
+      let themes:string[]=[];
+    let set_themes:Set<string>;
+    let categ:Categeory[]=[];
+    
+    this.documents.forEach(doc=>{
+      themes.push(doc.theme);
+    })
+    set_themes=new Set(themes)
+    set_themes.forEach(elt => {
+      categ.push({name:elt,count:themes.filter(theme=>theme==elt).length})
+    });
+      this.categories=categ;
       this.types=this.getTypes();
     })
   }
