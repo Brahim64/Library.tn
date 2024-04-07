@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DocumentService } from '../service/document.service';
 import { Categeory } from '../shared/model/Category';
 import { Type } from '../shared/model/Type';
 import { map } from 'rxjs';
 import { document } from '../shared/model/document';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -11,56 +12,60 @@ import { document } from '../shared/model/document';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit{
+
   
-  documents:document[]=[]
+
+
   types:Type[]=[];
   categories:Categeory[]=[];
-  constructor(private documentService:DocumentService){}
+  radios:{checked:boolean}[]=[]
+  constructor(private documentService:DocumentService,private router:Router){
+  }
   ngOnInit(): void {
     this.documentService.getAllDocuments().subscribe(res=>{
-      this.documents=res;
-      let themes:string[]=[];
-    let set_themes:Set<string>;
-    let categ:Categeory[]=[];
-    
-    this.documents.forEach(doc=>{
-      themes.push(doc.theme);
-    })
-    set_themes=new Set(themes)
-    set_themes.forEach(elt => {
-      categ.push({name:elt,count:themes.filter(theme=>theme==elt).length})
-    });
-      this.categories=categ;
-      this.types=this.getTypes();
+      this.categories=this.getCategories(res)
+      this.types=this.getTypes(res);
+      //this.radios.length=this.types.length
     })
   }
   
-  getCategories():Categeory[]{
+  getCategories(docs:document[]):Categeory[]{
     let themes:string[]=[];
     let set_themes:Set<string>;
     let categ:Categeory[]=[];
     
-    this.documents.forEach(doc=>{
+    docs.forEach(doc=>{
       themes.push(doc.theme);
     })
     set_themes=new Set(themes)
     set_themes.forEach(elt => {
-      categ.push({name:elt,count:themes.filter(theme=>theme==elt).length})
+      categ.push({name:elt,count:themes.filter(theme=>theme==elt).length,checked:false})
     });
     return categ;
   }
-  getTypes():Type[]{
+  getTypes(docs:document[]):Type[]{
     let types:string[]=[];
     let set_types:Set<string>;
     let final:Type[]=[];
-    this.documents.forEach(doc=>{
+    docs.forEach(doc=>{
       types.push(doc.fileType);
     })
     set_types=new Set(types)
     set_types.forEach(elt => {
-      final.push({name:elt,count:types.filter(type=>type==elt).length})
+      final.push({name:elt,count:types.filter(type=>type==elt).length,checked:false})
     });
     return final;
   }
+  onSearch(){
+    
+    /* this.types.forEach(elt=>{
+      console.log(elt.checked)
+    }) */
+  }
+  onChange(event:any){
+    console.log(event.target.id)
+    this.router.navigateByUrl("documents")
+  }
+  
 
 }

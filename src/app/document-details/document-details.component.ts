@@ -33,7 +33,8 @@ export class DocumentDetailsComponent implements OnInit{
   }
   onDelete(){
     this.documentService.deleteDocumentById(this.docId).subscribe(()=>{
-      setInterval(()=>{console.log("hello")},10000)
+      setTimeout(() => { // Reschedule itself
+      }, 800);
       this.router.navigateByUrl("documents")
     });
     

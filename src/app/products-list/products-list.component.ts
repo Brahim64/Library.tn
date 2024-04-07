@@ -18,14 +18,16 @@ export class ProductsListComponent implements OnInit{
   
   
   ngOnInit():void {
-    this.documentService.getAllDocuments().subscribe(res=>{this.documents=res})
+    //this.documentService.getAllDocuments().subscribe(res=>{this.documents=res})
     this.route.paramMap.subscribe(res=>{
-      /* if (res.get('param1')) {
-        this.documents=this.documentService.getAllDocumentsByTitle(res.get('param1'));
+      if (res.get('param1')) {
+        this.documentService.getAllDocuments().subscribe(docs=>{
+          this.documents=docs.filter(doc=>doc.title.toLowerCase().includes(res.get('param1').toLowerCase()))
+        }) 
       } 
-      else*/{
+      else{
         
-        /* this.documents=this.documentService.getAllDocuments(); */
+         this.documentService.getAllDocuments().subscribe(res=>{this.documents=res}) 
       }
     })
     console.log(this.documents)
