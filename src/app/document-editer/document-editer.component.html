@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form >
+          <form enctype="multipart/form-data">
             <div class="form-group">
               <label for="title">Title</label>
               <input type="text"  class="form-control" id="title" name="title" placeholder="title" [(ngModel)]="document.title" >
@@ -36,12 +36,37 @@
             </div>
             <div class="mb-3">
                 <label for="resume" class="form-label">Resume</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="resume" [(ngModel)]="document.resume" >{{document.resume}}</textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="resume" [(ngModel)]="document.resume" >{{document.resume}}</textarea>
             </div>
             <!-- <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div> -->
+            <!-- <div class="form-group">
+              <label class="btn btn-success p-0">
+                  <input type="file" (change)="selectFile($event)" />
+              </label>
+              <div *ngIf="currentFile" class="progress my-3">
+                  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                      attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                      [ngStyle]="{ width: progress + '%' }">
+                      {{ progress }}%
+                  </div>
+              </div>
+            </div> -->
+            
+              <fieldset>
+                <div class="form-group">
+                  <div>
+                    <input type="file" (change)="selectPhoto($event)" name="photo" id="photo" class="form-control">
+                  </div>
+                  
+                  <div>
+                    <input type="file" (change)="selectFile($event)" name="file" id="file"   class="form-control">
+                  </div>
+                  
+                </div>
+              </fieldset>
             
             <div class="text-right">
                 <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>

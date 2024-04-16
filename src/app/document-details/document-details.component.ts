@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentService } from '../service/document.service';
-import { document } from '../shared/model/document';
+import { Document } from '../shared/model/document';
 import { Observable, timeInterval, timeout } from 'rxjs';
+import { FileUploadServiceService } from '../service/file-upload-service.service';
 
 @Component({
   selector: 'app-document-details',
@@ -10,9 +11,11 @@ import { Observable, timeInterval, timeout } from 'rxjs';
   styleUrls: ['./document-details.component.css']
 })
 export class DocumentDetailsComponent implements OnInit{
-  constructor(private route:ActivatedRoute,private documentService:DocumentService,@Inject('baseURL') private baseUrl,
+  constructor(private route:ActivatedRoute,
+    private fileuploadService:FileUploadServiceService,
+    private documentService:DocumentService,@Inject('baseURL') private baseUrl,
   private router:Router){}
-  doc:document;
+  doc:Document;
   docId:number;
   isLoading:boolean=true;
   baseURL=this.baseUrl;
@@ -35,9 +38,15 @@ export class DocumentDetailsComponent implements OnInit{
     this.documentService.deleteDocumentById(this.docId).subscribe(()=>{
       setTimeout(() => { // Reschedule itself
       }, 800);
+      setTimeout(() => { // Reschedule itself
+      }, 1000);
       this.router.navigateByUrl("documents")
     });
     
+  }
+  onDownload(){
+    console.log(this.doc.file)
+    this.fileuploadService.download(this.doc.file)
   }
   
 

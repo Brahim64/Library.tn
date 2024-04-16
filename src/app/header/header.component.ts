@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit{
   constructor(private route:ActivatedRoute){}
 
-  @Input() adminSession:boolean=true;
   @Input() searchBar:boolean=false;
   
   //rendered:boolean=this.searchBar;

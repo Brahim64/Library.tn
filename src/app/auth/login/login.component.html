@@ -11,7 +11,7 @@
           <form [formGroup]="loginForm">
             <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" [readOnly]="true"  class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid':loginForm.get('email').dirty && loginForm.get('email').invalid}" placeholder="Enter email" required>
+              <input type="email"  class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid':loginForm.get('email').dirty && loginForm.get('email').invalid}" placeholder="Enter email" required>
               <!-- <small id="emailHelp" class="form-text text-muted"></small> -->
               <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').invalid" class="invalid-feedback">
                 <div *ngIf="loginForm.get('email').hasError('required')">please provide a valid mail</div>

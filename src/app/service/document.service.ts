@@ -1,7 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { document } from '../shared/model/document';
-import { Categeory } from '../shared/model/Category';
-import { Type } from '../shared/model/Type';
+import { Document } from '../shared/model/document';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -16,30 +14,30 @@ export class DocumentService {
   }
   
   constructor(private httpClient:HttpClient,@Inject('baseURL') private baseUrl) { }
-  /* getAllDocumentsByTitle(title: string): document[] {
+  /* getAllDocumentsByTitle(title: string): Document[] {
     return this.getAllDocuments().filter(doc=>doc.title.toLowerCase().includes(title.toLowerCase()))
   } */
-  getAllDocuments():Observable<document[]>{
-    return this.httpClient.get<document[]>(this.baseUrl+'documents');
+  getAllDocuments():Observable<Document[]>{
+    return this.httpClient.get<Document[]>(this.baseUrl+"api/v1/documents");
   }
-  getDocumentById(id:number):Observable<document>{
+  getDocumentById(id:number):Observable<Document>{
     /* return this.documents.find(doc=>doc.id==id); */
-    return this.httpClient.get<document>(this.baseUrl+"documents/"+id);
+    return this.httpClient.get<Document>(this.baseUrl+"api/v1/documents/"+id);
     
   }
-  updateDocument(doc:document):Observable<document>{
-    return this.httpClient.put<document>(this.baseUrl+"documents/"+doc.id,doc,this.httpOptions)
+  updateDocument(doc:Document):Observable<Document>{
+    return this.httpClient.put<Document>(this.baseUrl+"api/v1/documents/"+doc.id,doc,this.httpOptions)
   }
   deleteDocumentById(id:number):Observable<any>{
-    return this.httpClient.delete<any>(this.baseUrl+"documents/"+id)
+    return this.httpClient.delete<any>(this.baseUrl+"api/v1/documents/"+id)
   }
-  addDocument(doc:document):Observable<document>{
-    return this.httpClient.post<document>(this.baseUrl+"documents",doc,this.httpOptions);
+  addDocument(doc:Document):Observable<Document>{
+    return this.httpClient.post<Document>(this.baseUrl+"api/v1/documents",doc,this.httpOptions);
   }
   
- /* getDocumentsByThemes(theme:string):Observable<document[]>{
+ /* getDocumentsByThemes(theme:string):Observable<Document[]>{
 
-    return this.httpClient.get<document[]>(this.baseUrl+"documents/"+theme);
+    return this.httpClient.get<Document[]>(this.baseUrl+"documents/"+theme);
 
      let names= new Set(this.documents.map(doc=>doc.theme));
     let categories:Categeory[]=[];

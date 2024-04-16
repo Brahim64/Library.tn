@@ -6,7 +6,7 @@
 <div *ngIf="!isLoading" class="row mt-5 row-xs-cols-2">
     
         <div class="image col-md-5 col-xs-1 mb-2 bg-white text-center">
-            <img class="img-thumbnail mt-3 img-responsive" src="{{baseURL+doc.photo}}" width="400" style="max-height:90% ;max-width: 90%;min-height:90%;min-width: 90%;"  alt="book image">
+            <img class="img-thumbnail mt-3 img-responsive" src="{{baseURL+'api/v1/documents/photo/'+doc.photo}}" width="400" style="max-height:90% ;max-width: 90%;min-height:90%;min-width: 90%;"  alt="book image">
         </div>
         <div class="col-1"></div>
         <div class="col-md-6 col-xs-1 mb-2 bg-white">
@@ -19,8 +19,8 @@
                 <br>
                 <p class="text-muted"><small>{{doc.dateOfPub | date:'y MMM EEEE d ' |uppercase}}</small></p>
                 <p>{{doc.resume}}</p>
-                <div [hidden]="true" class="bouton text-right">
-                    <a href="#" class="btn btn-primary">download</a>
+                <div [hidden]="false" class="bouton text-right">
+                    <a href="#" class="btn btn-primary" (click)="onDownload()">download</a>
                 </div>
                 <div class="bouton text-right mt-5">
                     <button type="button"  class="btn btn-dark" data-toggle="modal" data-target="#docEditer">Edit</button>

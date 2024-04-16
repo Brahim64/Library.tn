@@ -1,4 +1,4 @@
-export class document{
+export class Document{
     id?:number;
     title!:string;
     author?:string;
@@ -8,6 +8,6 @@ export class document{
     dateOfPub?:Date;
     fileType?:string; //rapport , memoire ....
     file?:string;
-    photo!:string;
+    photo?:string;
     modified?:boolean=false;
 }

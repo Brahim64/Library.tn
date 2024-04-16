@@ -1,4 +1,19 @@
 <div class="d-flex align-items-center">
+    <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Contact</a>
+          <div  class="dropdown-divider"></div>
+          <button [hidden]=""  type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter">
+            Login as Admin
+          </button>
+          <button [hidden]=""  type="button" class="dropdown-item" >
+            Logout
+          </button>
+        </div>
+    </div>
     <div class="admin-icon mr-4 text-center" data-bs-custom-class="custom-tooltip" title="Admin session" [hidden]="!adminSession1">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
             <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
